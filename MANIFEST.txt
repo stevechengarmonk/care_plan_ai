@@ -1,0 +1,17 @@
+README.md
+MANIFEST.txt
+.gitignore
+docker-compose.yml
+.env
+frontend/package.json
+frontend/Dockerfile
+frontend/src/index.js
+frontend/src/App.css
+frontend/src/App.jsx
+frontend/public/index.html
+backend/app.py
+backend/prompt_template.py
+backend/pdf_utils.py
+backend/requirements.txt
+backend/Dockerfile
+backend/DejaVuSans.ttf
