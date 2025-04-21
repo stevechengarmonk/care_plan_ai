@@ -1,46 +1,94 @@
+/* Layout container for the entire app */
 .app-container {
   max-width: 800px;
   margin: 2rem auto;
-  font-family: Arial, sans-serif;
+  font-family: "Segoe UI", sans-serif;
   padding: 1rem;
 }
+
+/* Styling for the input textarea where discharge summary is pasted */
 textarea.summary-input {
   width: 100%;
   font-size: 1rem;
   padding: 0.75rem;
   margin-bottom: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
 }
 button {
   padding: 0.6rem 1.2rem;
   font-size: 1rem;
-  background-color: #0b5ed7;
+  background-color: #0047ab;
   color: white;
   border: none;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 5px;
 }
 button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+  background-color: #999;
 }
+
+/* Section containing the parsed output */
 .output-section {
   margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Box styling for each output section (Case Note, Care Plan, etc.) */
+.output-box {
+  border: 1px solid #ddd;
   padding: 1rem;
-  background-color: #f9f9f9;
-  border-left: 4px solid #007acc;
+  background: #fafafa;
+  border-radius: 6px;
 }
-.error {
-  color: red;
-  margin-top: 1rem;
+.section-header {
+  display: block;
+  width: 100%;
+  background: #007acc;
+  color: white;
+  padding: 0.6rem;
+  text-align: left;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
 }
-.tabs button {
-  margin-right: 0.5rem;
-  background-color: #f1f1f1;
-  border: 1px solid #ccc;
-}
-.tab-output pre {
-  background-color: #fff;
-  padding: 1rem;
-  border: 1px solid #ccc;
+
+/* Monospaced output text display */
+.output-text {
   white-space: pre-wrap;
+  font-family: inherit;
+}
+.action-list {
+  list-style: none;
+  padding: 0;
+}
+.action-list li {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+.action-list li input[type="checkbox"] {
+  margin-right: 0.5rem;
+  transform: scale(1.2);
+}
+.action-list li.done {
+  color: green;
+  text-decoration: line-through;
+}
+
+/* Soft blue background for healthcare feel */
+.App {
+    background-color: #e3f2fd;
+}
+
+
+/* Healthcare soft blue background */
+.App {
+    background-color: #e3f2fd !important;
+}
+
+/* Add spacing between all buttons */
+.App button {
+    margin: 10px 0 !important;
 }

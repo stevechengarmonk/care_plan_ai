@@ -1,39 +1,43 @@
+# prompt_template.py
+
 FEW_SHOT = """
 Example Discharge Summary:
 Patient: James L.
-Admit: 3/15/25 | Discharge: 3/20/25 | Procedure: Left Hip Replacement
+Procedure: Left Hip Replacement
 Disposition: Home with walker
-Plan: Home PT 3x/wk, f/u ortho 2 wks
-Meds: Acetaminophen, Oxycodone, Enoxaparin
+Plan: Home PT, f/u ortho 2 wks
+Meds: Acetaminophen, Oxycodone
 
-Expected Output:
-
-Care Note:
-Patient admitted for left hip arthroplasty, discharged home on POD5 with walker. No complications. Home PT arranged.
-
-Care Plan:
-Goals:
-- Ambulate independently
-- Attend ortho f/u
-Gaps:
-- Limited mobility
-- Pain management needs
-Interventions:
-- Home PT 3x/wk
-- Pain meds and anticoagulant
-
-Action Items:
-- ☑️ Schedule PT
-- ☑️ Confirm follow-up
+Expected JSON Output:
+{
+  "case_note": "Patient admitted for left hip arthroplasty...",
+  "care_plan": {
+    "goals": ["Ambulate independently", "Attend ortho follow-up"],
+    "gaps": ["Limited mobility"],
+    "interventions": ["Home PT", "Pain management"]
+  },
+  "action_items": [
+    "☑️ Confirm DME",
+    "☑️ Schedule PT"
+  ]
+}
 """
 
-def build_prompt(discharge_summary):
+def build_prompt(discharge_summary: str) -> str:
     return f"""
-You are a healthcare case manager. Based on the discharge summary below, generate:
+You are a healthcare case manager. Based on the discharge summary below, return only a valid JSON object — no explanation, no markdown, no formatting — that matches this schema:
 
-1. A **Care Note**
-2. A structured **Care Plan** with Goals, Gaps, Interventions
-3. A list of **Action Items**
+{{
+  "case_note": string,
+  "care_plan": {{
+    "goals": [string],
+    "gaps": [string],
+    "interventions": [string]
+  }},
+  "action_items": [string]
+}}
+
+Only return the JSON object.
 
 {FEW_SHOT}
 

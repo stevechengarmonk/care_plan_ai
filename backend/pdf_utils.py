@@ -1,7 +1,10 @@
+# PDF generation utility (Unicode-safe)
 from fpdf import FPDF
 import base64
 import tempfile
 
+
+# Main function to build a single-column PDF from the GenAI output
 def create_pdf(content):
     pdf = FPDF()
     pdf.add_page()
