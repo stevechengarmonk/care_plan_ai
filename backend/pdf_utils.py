@@ -1,19 +1,17 @@
-# PDF generation utility (Unicode-safe)
+
 from fpdf import FPDF
 import base64
-import tempfile
+import os
+import json
 
-
-# Main function to build a single-column PDF from the GenAI output
 def create_pdf(content):
     pdf = FPDF()
     pdf.add_page()
-    pdf.add_font("DejaVu", "", "/app/DejaVuSans.ttf", uni=True)
+    font_path = os.path.join(os.path.dirname(__file__), "DejaVuSans.ttf")
+    pdf.add_font("DejaVu", "", font_path, uni=True)
     pdf.set_font("DejaVu", "", 12)
     for line in content.splitlines():
         pdf.multi_cell(0, 10, line)
-
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
-        pdf.output(tmp.name)
-        tmp.seek(0)
-        return base64.b64encode(tmp.read()).decode("utf-8")
+    # Output PDF as bytes in memory
+    pdf_bytes = pdf.output(dest="S").encode("latin1")
+    return base64.b64encode(pdf_bytes).decode()

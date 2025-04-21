@@ -77,18 +77,18 @@ button:disabled {
   text-decoration: line-through;
 }
 
-/* Soft blue background for healthcare feel */
-.App {
-    background-color: #e3f2fd;
+
+/* Issue 1: Background and button spacing */
+.app-container {
+  background-color: #e3f2fd;
+}
+
+.button-row {
+  display: flex;
+  flex-direction: row;  /* horizontal row */
+  flex-wrap: nowrap;    /* keep all buttons on one line */
+  gap: 16px;            /* space between buttons */
+  margin-bottom: 20px;
 }
 
 
-/* Healthcare soft blue background */
-.App {
-    background-color: #e3f2fd !important;
-}
-
-/* Add spacing between all buttons */
-.App button {
-    margin: 10px 0 !important;
-}
